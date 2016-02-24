@@ -9,10 +9,12 @@ public class CoinCollision : MonoBehaviour
     public float minForce = 8f;
     public float maxForce = 10f;
     public Rigidbody rb;
+    private GameObject _gameManager;
 
     void Start()
     {
         rb = GetComponent<Rigidbody>();
+        _gameManager = GameObject.Find("GameManager");
     }
 
     void OnCollisionEnter(Collision col)
@@ -36,6 +38,7 @@ public class CoinCollision : MonoBehaviour
         Debug.Log(count);
         if (count > 2)
         {
+            _gameManager.GetComponent<UpdateScore>().AddAmount(count);
             foreach (Collider colliderObject in colliders)
             {
                 if (colliderObject.name.Equals(this.gameObject.name))
