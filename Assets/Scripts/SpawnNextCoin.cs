@@ -8,11 +8,15 @@ public class SpawnNextCoin : MonoBehaviour
     public float WaitTime = 5f;
     public GameObject[] Coins;
     public GameObject SpawnGameObject;
+    public GameObject SpringGameObject;
+
+    private Animator _springAnimator;
 
 	// Use this for initialization
 	void Start ()
 	{
 	    StartCoroutine(SpawnCoin());
+        _springAnimator = SpringGameObject.GetComponent<Animator>();
 	}
 	
 	// Update is called once per frame
@@ -40,6 +44,7 @@ public class SpawnNextCoin : MonoBehaviour
         Instantiate(Coins[Random.Range(0, Coins.Length)],
             SpawnGameObject.transform.position,
             rotation);
+        //_springAnimator.SetTrigger("SpringMove");
         Trigger = true;
     }
 }
