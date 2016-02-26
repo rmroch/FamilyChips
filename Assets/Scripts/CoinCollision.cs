@@ -2,6 +2,7 @@
 using UnityEngine;
 using System.Collections;
 using Microsoft.Win32;
+using UnityEngine.UI;
 using Random = UnityEngine.Random;
 
 public class CoinCollision : MonoBehaviour
@@ -9,19 +10,23 @@ public class CoinCollision : MonoBehaviour
     public float minForce = 8f;
     public float maxForce = 10f;
     public Rigidbody rb;
+
+    private GameObject _springTensionSlider;
     private GameObject _gameManager;
 
     void Start()
     {
         rb = GetComponent<Rigidbody>();
         _gameManager = GameObject.Find("GameManager");
+        _springTensionSlider = GameObject.Find("Slider");
     }
 
     void OnCollisionEnter(Collision col)
     {
+        Debug.Log(string.Format("Spring Tension Slider Value: {0}", _springTensionSlider.GetComponent<Slider>().value));
         if (col.gameObject.name.Equals("CubeLauncher"))
         {
-            rb.velocity = new Vector3(0, Random.Range(minForce, maxForce), 0);
+            rb.velocity = new Vector3(0, Random.Range((minForce + _springTensionSlider.GetComponent<Slider>().value), maxForce), 0);
         }
 
         Int32 count = 0;
