@@ -9,6 +9,8 @@ public class SpawnNextCoin : MonoBehaviour
     public GameObject[] Coins;
     public GameObject SpawnGameObject;
     public GameObject SpringGameObject;
+    public GameObject camera;
+    public GameObject chip;
 
     private Animator _springAnimator;
 
@@ -25,6 +27,10 @@ public class SpawnNextCoin : MonoBehaviour
 	    {
             StartCoroutine(SpawnCoin());
 	    }
+        if (chip != null)
+        {
+            camera.transform.LookAt(chip.transform);
+        }
 	}
 
     public IEnumerator SpawnCoin()
@@ -41,9 +47,9 @@ public class SpawnNextCoin : MonoBehaviour
         {
             IsBlueFace = true;
         }
-        Instantiate(Coins[Random.Range(0, Coins.Length)],
+        chip = Instantiate(Coins[Random.Range(0, Coins.Length)],
             SpawnGameObject.transform.position,
-            rotation);
+            rotation) as GameObject;
         //_springAnimator.SetTrigger("SpringMove");
         Trigger = true;
     }
