@@ -10,6 +10,7 @@ public class CoinCollision : MonoBehaviour
     public float minForce = 8f;
     public float maxForce = 10f;
     public Rigidbody rb;
+    //public AudioClip ChipHitAudioClip;
 
     private GameObject _springTensionSlider;
     private GameObject _gameManager;
@@ -23,6 +24,7 @@ public class CoinCollision : MonoBehaviour
 
     void OnCollisionEnter(Collision col)
     {
+        //AudioSource.PlayClipAtPoint(ChipHitAudioClip, new Vector3(0,0,0));
         Debug.Log(string.Format("Spring Tension Slider Value: {0}", _springTensionSlider.GetComponent<Slider>().value));
         if (col.gameObject.name.Equals("CubeLauncher"))
         {
