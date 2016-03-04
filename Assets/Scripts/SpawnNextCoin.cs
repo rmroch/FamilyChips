@@ -12,7 +12,6 @@ public class SpawnNextCoin : MonoBehaviour
     public GameObject SpringGameObject;
     public GameObject camera;
     public GameObject chip;
-    public GameObject OptionsPanel;
     public AudioClip BackgroundAudioClip;
 
     private Animator _springAnimator;
@@ -27,19 +26,6 @@ public class SpawnNextCoin : MonoBehaviour
 	
 	// Update is called once per frame
 	void Update () {
-	    if (Input.GetKeyDown(KeyCode.Escape))
-	    {
-            Debug.Log("esc");
-	        if (OptionsPanel.activeInHierarchy)
-	        {
-                OptionsPanel.SetActive(false);
-	        }
-	        else
-	        {
-                OptionsPanel.SetActive(true);
-	        }
-	    }
-
 	    if (Trigger)
 	    {
             StartCoroutine(SpawnCoin());
@@ -49,11 +35,6 @@ public class SpawnNextCoin : MonoBehaviour
             camera.transform.LookAt(chip.transform);
         }
 	}
-
-    public void Exit()
-    {
-        Application.Quit();
-    }
 
     public IEnumerator SpawnCoin()
     {

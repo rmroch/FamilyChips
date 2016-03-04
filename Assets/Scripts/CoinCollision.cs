@@ -24,34 +24,38 @@ public class CoinCollision : MonoBehaviour
 
     void OnCollisionEnter(Collision col)
     {
-        //AudioSource.PlayClipAtPoint(ChipHitAudioClip, new Vector3(0,0,0));
-        Debug.Log(string.Format("Spring Tension Slider Value: {0}", _springTensionSlider.GetComponent<Slider>().value));
-        if (col.gameObject.name.Equals("CubeLauncher"))
+        if (_springTensionSlider != null)
         {
-            rb.velocity = new Vector3(0, Random.Range((minForce + _springTensionSlider.GetComponent<Slider>().value), maxForce), 0);
-        }
-
-        Int32 count = 0;
-        Collider[] colliders;
-        colliders = Physics.OverlapSphere(this.transform.position, 2.0f);
-        Debug.Log(this.gameObject.name);
-        foreach (Collider colliderObject in colliders)
-        {
-            if (colliderObject.name.Equals(this.gameObject.name))
+            Debug.Log(string.Format("Spring Tension Slider Value: {0}",
+                _springTensionSlider.GetComponent<Slider>().value));
+            if (col.gameObject.name.Equals("CubeLauncher"))
             {
-                count++;
+                rb.velocity = new Vector3(0,
+                    Random.Range((minForce + _springTensionSlider.GetComponent<Slider>().value), maxForce), 0);
             }
-        }
-        Debug.Log(count);
-        if (count > 2)
-        {
-            _gameManager.GetComponent<UpdateScore>().AddAmount(count);
+
+            Int32 count = 0;
+            Collider[] colliders;
+            colliders = Physics.OverlapSphere(this.transform.position, 2.0f);
+            Debug.Log(this.gameObject.name);
             foreach (Collider colliderObject in colliders)
             {
                 if (colliderObject.name.Equals(this.gameObject.name))
                 {
-                    Debug.Log("destroy");
-                    Destroy(colliderObject.gameObject);
+                    count++;
+                }
+            }
+            Debug.Log(count);
+            if (count > 2)
+            {
+                _gameManager.GetComponent<UpdateScore>().AddAmount(count);
+                foreach (Collider colliderObject in colliders)
+                {
+                    if (colliderObject.name.Equals(this.gameObject.name))
+                    {
+                        Debug.Log("destroy");
+                        Destroy(colliderObject.gameObject);
+                    }
                 }
             }
         }
