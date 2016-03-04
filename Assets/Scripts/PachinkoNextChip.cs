@@ -6,11 +6,12 @@ using Random = UnityEngine.Random;
 public class PachinkoNextChip : MonoBehaviour
 {
     private bool _isChipInHand = false;
+    private float _timeLeft;
     private GameObject _chipInHand;
     private Vector3 _offset;
     private Vector3 _screenPoint;
 
-    public Int32 TimeBetweenChips = 10;
+    public float TimeBetweenChips = 10f;
     public float LeftEdge = 5.4f;
     public float RightEdge = -5.4f;
     public GameObject[] Chips;
@@ -22,7 +23,9 @@ public class PachinkoNextChip : MonoBehaviour
 	
 	// Update is called once per frame
 	void Update () {
-	    if (_isChipInHand == false)
+        _timeLeft -= Time.deltaTime;
+	    if (_isChipInHand == false
+            && _timeLeft < 0)
 	    {
 	        _isChipInHand = true;
             Int32 chipIndex = Random.Range(0, Chips.Length);
@@ -32,7 +35,8 @@ public class PachinkoNextChip : MonoBehaviour
 	    }
 	    else
 	    {
-	        if (_chipInHand != null)
+            if (_isChipInHand
+            && _chipInHand != null)
 	        {
 	            float boundedXPos = _chipInHand.transform.position.x;
 	            if (boundedXPos > LeftEdge)
@@ -43,31 +47,35 @@ public class PachinkoNextChip : MonoBehaviour
 	            {
 	                boundedXPos = RightEdge;
 	            }
-                _chipInHand.transform.position = new Vector3(boundedXPos, 10f, .759f);
+                _chipInHand.transform.position = new Vector3(boundedXPos, 10f, .75f);
 	        }
 	    }
-	    if (Input.GetKey(KeyCode.RightArrow))
+        if (_isChipInHand
+            && Input.GetKey(KeyCode.RightArrow))
 	    {
             if (_chipInHand != null
                 && _isChipInHand)
             {
-                _chipInHand.transform.position = new Vector3(_chipInHand.transform.position.x + .5f, 10f, .759f);
+                _chipInHand.transform.position = new Vector3(_chipInHand.transform.position.x + .5f, 10f, .75f);
             }
 	    }
-        if (Input.GetKey(KeyCode.LeftArrow))
+        if (_isChipInHand 
+            && Input.GetKey(KeyCode.LeftArrow))
         {
             if (_chipInHand != null
                 && _isChipInHand)
             {
-                _chipInHand.transform.position = new Vector3(_chipInHand.transform.position.x - .5f, 10f, .759f);
+                _chipInHand.transform.position = new Vector3(_chipInHand.transform.position.x - .5f, 10f, .75f);
             }
         }
-        if (Input.GetKeyDown(KeyCode.Space))
+        if (_isChipInHand
+            && Input.GetKeyDown(KeyCode.Space))
         {
             if (_chipInHand != null
                 && _isChipInHand)
             {
                 _isChipInHand = false;
+                _timeLeft = TimeBetweenChips;
             }
         }
 	}
