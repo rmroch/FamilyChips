@@ -36,6 +36,11 @@ public class GameMenu : MonoBehaviour {
         Application.LoadLevel("pachinko");
     }
 
+    public void LoadCoinStacka()
+    {
+        Application.LoadLevel("CoinStacka");
+    }
+
     public void Exit()
     {
         Application.Quit();
