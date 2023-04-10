@@ -31,9 +31,9 @@ public class GameMenu : MonoBehaviour {
         Application.LoadLevel("main");
     }
 
-    public void LoadPachinko()
+    public void LoadCoinPusher()
     {
-        Application.LoadLevel("pachinko");
+        Application.LoadLevel("CoinPusher");
     }
 
     public void LoadCoinStacka()
