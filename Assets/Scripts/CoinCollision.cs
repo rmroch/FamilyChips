@@ -26,8 +26,8 @@ public class CoinCollision : MonoBehaviour
     {
         if (_springTensionSlider != null)
         {
-            Debug.Log(string.Format("Spring Tension Slider Value: {0}",
-                _springTensionSlider.GetComponent<Slider>().value));
+            //Debug.Log(string.Format("Spring Tension Slider Value: {0}",
+            //    _springTensionSlider.GetComponent<Slider>().value));
             if (col.gameObject.name.Equals("CubeLauncher"))
             {
                 rb.velocity = new Vector3(0,
@@ -37,7 +37,7 @@ public class CoinCollision : MonoBehaviour
             Int32 count = 0;
             Collider[] colliders;
             colliders = Physics.OverlapSphere(this.transform.position, 2.0f);
-            Debug.Log(this.gameObject.name);
+            //Debug.Log(this.gameObject.name);
             foreach (Collider colliderObject in colliders)
             {
                 if (colliderObject.name.Equals(this.gameObject.name))
@@ -45,7 +45,7 @@ public class CoinCollision : MonoBehaviour
                     count++;
                 }
             }
-            Debug.Log(count);
+            //Debug.Log(count);
             if (count > 2)
             {
                 _gameManager.GetComponent<UpdateScore>().AddAmount(count);
@@ -53,7 +53,7 @@ public class CoinCollision : MonoBehaviour
                 {
                     if (colliderObject.name.Equals(this.gameObject.name))
                     {
-                        Debug.Log("destroy");
+                        //Debug.Log("destroy");
                         Destroy(colliderObject.gameObject);
                     }
                 }

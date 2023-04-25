@@ -6,15 +6,15 @@ EditorBuildSettings:
   serializedVersion: 2
   m_Scenes:
   - enabled: 1
-    path: Assets/Scenes/gamemenu.unity
+    path: Assets/_Scenes/gamemenu.unity
     guid: d0b41502efe579d468950ff47f503d6d
   - enabled: 1
-    path: Assets/Scenes/CoinPusher.unity
+    path: Assets/_Scenes/CoinPusher.unity
     guid: 8945e27315e82b0489277ce56518b3d6
   - enabled: 1
-    path: Assets/Scenes/CoinStacka.unity
+    path: Assets/_Scenes/CoinStacka.unity
     guid: 8862031ee4adf51489c816b9f06cd2b3
   - enabled: 1
-    path: Assets/Scenes/main.unity
+    path: Assets/_Scenes/main.unity
     guid: 6dff8d27f7fef8b47b6399616497265e
   m_configObjects: {}

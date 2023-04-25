@@ -14,6 +14,7 @@ GameObject:
   - component: {fileID: 6476410}
   - component: {fileID: 5471766}
   - component: {fileID: 11424610}
+  - component: {fileID: 1882194138362013907}
   m_Layer: 0
   m_Name: ChipChris
   m_TagString: Untagged
@@ -129,3 +130,15 @@ MonoBehaviour:
   minForce: 13
   maxForce: 30
   rb: {fileID: 0}
+--- !u!114 &1882194138362013907
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 123930}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f0ab225ae40fa194aae299dae0272095, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 

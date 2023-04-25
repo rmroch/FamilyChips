@@ -8,8 +8,9 @@ public class SpawnNextCoin : MonoBehaviour
     public bool IsBlueFace = true;
     public float WaitTime = 5f;
     public GameObject[] Coins;
-    public GameObject SpawnGameObject;
-    public GameObject SpringGameObject;
+    public GameObject spawnGameObject;
+    public GameObject springGameObject;
+    public GameObject launchLaneGameObject;
     public GameObject camera;
     public GameObject chip;
     public AudioClip BackgroundAudioClip;
@@ -20,20 +21,21 @@ public class SpawnNextCoin : MonoBehaviour
 	void Start ()
 	{
 	    StartCoroutine(SpawnCoin());
-        _springAnimator = SpringGameObject.GetComponent<Animator>();
+        _springAnimator = springGameObject.GetComponent<Animator>();
         AudioSource.PlayClipAtPoint(BackgroundAudioClip, new Vector3(0,0,0));
 	}
 	
-	// Update is called once per frame
 	void Update () {
 	    if (Trigger)
 	    {
+            //Collider[] hitColliders = Physics.OverlapBox(launchLaneGameObject.transform.position, transform.localScale / 2, Quaternion.identity);
+            //Debug.Log(hitColliders.Length);
             StartCoroutine(SpawnCoin());
 	    }
-        if (chip != null)
-        {
-            camera.transform.LookAt(chip.transform);
-        }
+        // if (chip != null)
+        // {
+        //     camera.transform.LookAt(chip.transform);
+        // }
 	}
 
     public IEnumerator SpawnCoin()
@@ -51,8 +53,9 @@ public class SpawnNextCoin : MonoBehaviour
             IsBlueFace = true;
         }
         chip = Instantiate(Coins[Random.Range(0, Coins.Length)],
-            SpawnGameObject.transform.position,
+            spawnGameObject.transform.position,
             rotation) as GameObject;
+        chip.GetComponent<LockXYRotationToZero>().useLockXY = true;
         //_springAnimator.SetTrigger("SpringMove");
         Trigger = true;
     }

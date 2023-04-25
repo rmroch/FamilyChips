@@ -7,7 +7,7 @@ public class SpringCollision : MonoBehaviour
 
     private void OnTriggerEnter()
     {
-        Debug.Log("trugger");
+        //Debug.Log("trigger");
         AudioSource.PlayClipAtPoint(SpringAudioClip, new Vector3(0,0,0));
         Animator animator = GetComponent<Animator>();
         animator.SetTrigger("SpringMove");

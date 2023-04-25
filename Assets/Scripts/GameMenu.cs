@@ -1,5 +1,6 @@
 ﻿using UnityEngine;
 using System.Collections;
+using UnityEngine.SceneManagement;
 
 public class GameMenu : MonoBehaviour {
     public GameObject OptionsPanel;
@@ -23,22 +24,22 @@ public class GameMenu : MonoBehaviour {
 
     public void LoadGameMenu()
     {
-        Application.LoadLevel("gamemenu");
+        SceneManager.LoadScene("gamemenu");
     }
     
     public void LoadChipLaunch()
     {
-        Application.LoadLevel("main");
+        SceneManager.LoadScene("main");
     }
 
     public void LoadCoinPusher()
     {
-        Application.LoadLevel("CoinPusher");
+        SceneManager.LoadScene("CoinPusher");
     }
 
     public void LoadCoinStacka()
     {
-        Application.LoadLevel("CoinStacka");
+        SceneManager.LoadScene("CoinStacka");
     }
 
     public void Exit()
